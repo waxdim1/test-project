@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+    <form method="POST" action="{% url 'calc' %}">
+        {% csrf_token %}
+        <table>
+            <table border="1"  cellpadding="5" align="center"  width="400">
+                <tr >
+                    <td>Бортовой номер</td>
+                    <td>Модель</td>
+                    <td>Текущий вес</td>
+                    <td>Максимальная грузоподъемность</td>
+                    <td>Перегрузка, в %</td>
+                    <td>Координаты рзгрузки (x,y)</td>
+                </tr>
+                {% for tip in tippers.all %}
+                    <tr >
+                        <td>{{ tip.number }}</td>
+                        <td>{{ tip.model }}</td>
+                        <td>{{ tip.cur_weight }}</td>
+                        <td>{{ tip.max_weight }}</td>
+                        <td>{{ tip.overload }}</td>
+                        <td><input name="coordinate" type="text" size="10" maxlength="10"></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </table>
+        <input style="margin-left:45%; margin-top:10px;" type="submit"/>
+    </form>
+
+    <table border="1"  cellpadding="5" align="center" style="margin-top:10%;" width="500">
+        <tr >
+            <td>Название склада</td>
+            <td>Объем до разгрузки,т</td>
+            <td>Объем после разгрузки,т</td>
+            <td>Качественные характеристики после разгрузки</td>
+        </tr>
+        {% for stock in stocks.all %}
+        <tr >
+            <td>{{ stock.name }}</td>
+            <td>{{ temp }}</td>
+            <td>{{ stock.capacity_after }}</td>
+            <td>{{ stock.char_fe }}% Fe, {{ stock.char_si }}% SiO2 </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
