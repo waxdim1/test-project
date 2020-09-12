@@ -11,7 +11,6 @@ def calcul(request):
     if request.method == "POST":
         form  = Input(request.POST)
         stock = Stock.objects.get(name="Склад")
-        capacity_temp = stock.capacity_before
         polygon = Polygon(((30, 10), (40, 40), (20, 40), (10, 20), (30, 10))) #Инициализация полигона
         if form.is_valid():
             coordinates = request.POST.getlist('coordinate')    #Получение списка координат
@@ -31,7 +30,7 @@ def calcul(request):
                         stock_si += tip_si                                      #На складе после разгрузки
 
                         stock.capacity_after = tip.cur_weight + stock.capacity_before
-                        capacity_temp = stock.capacity_before                   #Расчет обьема до и после разгрузки
+                        stock.capacity_show = stock.capacity_before                   #Расчет обьема до и после разгрузки
                         stock.capacity_before = stock.capacity_after
 
                         stock.char_fe = stock_fe * 100 / stock.capacity_after
@@ -41,8 +40,7 @@ def calcul(request):
     else:
         form = Input()
         stock = Stock.objects.get(name="Склад")
-        capacity_temp = stock.capacity_before
     tippers = Tipper.objects.all()
     stocks = Stock.objects.all()
-    context = {"tippers":tippers,"stocks":stocks,"temp":capacity_temp}
+    context = {"tippers":tippers,"stocks":stocks}
     return render(request,'mining/tipper_list.html', context)

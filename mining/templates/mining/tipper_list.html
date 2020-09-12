@@ -42,7 +42,7 @@
         {% for stock in stocks.all %}
         <tr >
             <td>{{ stock.name }}</td>
-            <td>{{ temp }}</td>
+            <td>{{ stock.capacity_show}}</td>
             <td>{{ stock.capacity_after }}</td>
             <td>{{ stock.char_fe }}% Fe, {{ stock.char_si }}% SiO2 </td>
         </tr>

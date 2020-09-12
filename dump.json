@@ -7,7 +7,7 @@
     "model": "\u0411\u0415\u041b\u0410\u0417",
     "max_weight": 120,
     "cur_weight": 100,
-    "coordinates": "POINT (30 20)",
+    "coordinates": "POINT (22 33)",
     "char_fe": 67,
     "char_si": 32
   }
@@ -20,7 +20,7 @@
     "model": "\u0411\u0415\u041b\u0410\u0417",
     "max_weight": 110,
     "cur_weight": 125,
-    "coordinates": "POINT (19 1)",
+    "coordinates": "POINT (22 33)",
     "char_fe": 65,
     "char_si": 30
   }
@@ -33,7 +33,7 @@
     "model": "Komatsu",
     "max_weight": 110,
     "cur_weight": 120,
-    "coordinates": "POINT (31 64)",
+    "coordinates": "POINT (22 33)",
     "char_fe": 62,
     "char_si": 35
   }
@@ -43,10 +43,11 @@
   "pk": 1,
   "fields": {
     "name": "\u0421\u043a\u043b\u0430\u0434",
-    "capacity_before": 2015,
-    "capacity_after": 2015,
-    "char_fe": 64,
-    "char_si": 31
+    "capacity_before": 1345,
+    "capacity_after": 1345,
+    "capacity_show": 1245,
+    "char_fe": 63,
+    "char_si": 30
   }
 }
 ]

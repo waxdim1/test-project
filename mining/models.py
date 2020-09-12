@@ -32,8 +32,14 @@ class Stock(models.Model):
     name = models.CharField("Название склада",max_length=50)
     capacity_before = models.PositiveIntegerField("Объем склада до разгрузки",default=None)
     capacity_after = models.PositiveIntegerField("Объем склада после разгрузки", blank=True, null=True,default=None)
+    capacity_show = models.PositiveIntegerField("До разгрузки", blank=True, null=True,default=None,editable=False)
     char_fe = models.IntegerField("Железо",blank=True,default=None)
     char_si = models.IntegerField("Диоксид кремния", blank=True, default=None)
+
+    @property
+    def temp(self):
+        return  (self.capacity_after -  self.capacity_before)
+
 
 
     def __str__(self):
