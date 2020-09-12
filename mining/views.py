@@ -21,6 +21,7 @@ def calcul(request):
                     tip.save()
                     if tip.coordinates.intersects(polygon):  #Если точка попадает то пересчитываем характеристики склада
                         print(tip.coordinates.intersects(polygon))
+                        print('fak')
                         stock_fe = stock.char_fe * stock.capacity_before / 100  #Сколько железа до разгрузки
                         tip_fe = tip.char_fe * tip.cur_weight / 100             #Сколько железа в самосвале
                         stock_fe += tip_fe                                      #На складе после разгрузки
@@ -39,7 +40,6 @@ def calcul(request):
                         stock.save()
     else:
         form = Input()
-        stock = Stock.objects.get(name="Склад")
     tippers = Tipper.objects.all()
     stocks = Stock.objects.all()
     context = {"tippers":tippers,"stocks":stocks}

@@ -36,11 +36,6 @@ class Stock(models.Model):
     char_fe = models.IntegerField("Железо",blank=True,default=None)
     char_si = models.IntegerField("Диоксид кремния", blank=True, default=None)
 
-    @property
-    def temp(self):
-        return  (self.capacity_after -  self.capacity_before)
-
-
 
     def __str__(self):
         return self.name
