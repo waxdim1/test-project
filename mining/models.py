@@ -7,7 +7,8 @@ class Tipper(models.Model):
     model = models.CharField("Модель",max_length=10)
     max_weight = models.IntegerField("Максимальная грузоподъемность",default=None)
     cur_weight = models.IntegerField("Текущий вес",default=None)
-    coordinates = models.CharField("Координаты",max_length=10,blank=True,null=True)
+    coor_x = models.FloatField("X координата",blank=True,null=True)
+    coor_y = models.FloatField("Y координата",blank=True,null=True)
     char_fe = models.IntegerField("Железо",blank=True,default=None)
     char_si = models.IntegerField("Диоксид кремния", blank=True, default=None)
 
@@ -16,7 +17,8 @@ class Tipper(models.Model):
         if self.cur_weight > self.max_weight:
             over = round((self.cur_weight *100 / self.max_weight -100),2)   #Расчет перегруза
             return over
-        else: return '-'
+        else:
+            return 0
 
 
     def __str__(self):
@@ -31,11 +33,10 @@ class Stock(models.Model):
     """Модель склада"""
     name = models.CharField("Название склада",max_length=50)
     capacity_before = models.PositiveIntegerField("Объем склада до разгрузки",default=None)
-    capacity_after = models.PositiveIntegerField("Объем склада после разгрузки", blank=True, null=True,default=None)
-    capacity_show = models.PositiveIntegerField("До разгрузки", blank=True, null=True,default=None,editable=False)
-    char_fe = models.IntegerField("Железо",blank=True,default=None)
-    char_si = models.IntegerField("Диоксид кремния", blank=True, default=None)
-
+    capacity_after = models.PositiveIntegerField("Объем склада после разгрузки",default=None)
+    char_fe = models.FloatField("Железо")
+    char_si = models.FloatField("Диоксид кремния")
+    polygon = models.CharField("Координаты полигона", max_length=100,default=None,editable=False, blank=True, null=True)
 
     def __str__(self):
         return self.name
